@@ -11,7 +11,7 @@ func Logic(ctx context.Context, Info string) (string, error) {
 	return "", nil
 }
 
-func Middleware(handler http.Handler) http.Handler {
+func Middleware_ctx(handler http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		ctx := r.Context()
 		r = r.WithContext(ctx)
@@ -72,9 +72,4 @@ func (sc ServiceCaller) callAnotherService(ctx context.Context, data string) (st
 
 func processResponse(body io.ReadCloser) (string, error) {
 	return "", nil
-}
-func main() {
-	ctx := context.Background()
-	result, err := Logic(ctx, "a string")
-	fmt.Println(result, err)
 }
